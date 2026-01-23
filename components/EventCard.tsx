@@ -11,7 +11,7 @@ const EventCard = ({
   time,
 }: EventType) => {
   return (
-    <Link href="/events" id="event-card">
+    <Link href={`/events/${slug}`} id="event-card">
       <Image
         src={imageUrl}
         alt={title}
