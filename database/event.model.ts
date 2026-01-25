@@ -28,7 +28,6 @@ const EventSchema = new Schema<IEvent>(
     },
     slug: {
       type: String,
-      unique: true,
       trim: true,
     },
     description: {
@@ -103,7 +102,7 @@ const EventSchema = new Schema<IEvent>(
 );
 
 // Add unique index to slug
-EventSchema.index({ slug: 1 });
+EventSchema.index({ slug: 1 } , { unique: true });
 
 // Pre-save hook for slug generation, date normalization, and validation
 EventSchema.pre('save', function () {
