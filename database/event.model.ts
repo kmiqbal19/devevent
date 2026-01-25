@@ -29,7 +29,6 @@ const EventSchema = new Schema<IEvent>(
     slug: {
       type: String,
       trim: true,
-      required: true,
     },
     description: {
       type: String,

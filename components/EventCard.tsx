@@ -1,19 +1,41 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { EventType } from '@/lib/constants';
+import { IEvent } from '@/database';
+
+type EventMode = 'online' | 'offline' | 'hybrid';
+export interface EventDTO {
+  _id: string;
+  title: string;
+  slug: string;
+  description: string;
+  overview: string;
+  image: string;
+  venue: string;
+  location: string;
+  date: string;
+  time: string;
+  mode: EventMode;
+  audience: string;
+  agenda: string[];
+  organizer: string;
+  tags: string[];
+  createdAt: string;
+  updatedAt: string;
+}
 
 const EventCard = ({
   title,
-  imageUrl,
+  image,
   slug,
   location,
   date,
   time,
-}: EventType) => {
+}: Pick<EventDTO, 'title' | 'image' | 'slug' | 'location' | 'date' | 'time'>) => {
+  
   return (
     <Link href={`/events/${slug}`} id="event-card">
       <Image
-        src={imageUrl}
+        src={image}
         alt={title}
         width={410}
         height={300}
