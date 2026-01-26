@@ -102,7 +102,7 @@ const EventSchema = new Schema<IEvent>(
 );
 
 // Add unique index to slug
-EventSchema.index({ slug: 1 } , { unique: true });
+EventSchema.index({ slug: 1 }, { unique: true });
 
 // Pre-save hook for slug generation, date normalization, and validation
 EventSchema.pre('save', function () {

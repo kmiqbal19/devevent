@@ -19,7 +19,11 @@ export async function POST(request: NextRequest) {
       );
     }
     const file = formData.get('image') as File;
-    if (!file) return NextResponse.json({ message: 'Image file is required' }, { status: 400 });
+    if (!file)
+      return NextResponse.json(
+        { message: 'Image file is required' },
+        { status: 400 }
+      );
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
     interface CloudinaryUploadResult {
@@ -39,7 +43,7 @@ export async function POST(request: NextRequest) {
     event.image = uploadResult.secure_url;
     const createdEvent = await Event.create(event);
     return NextResponse.json(
-      { message: 'Event created successfully', event : createdEvent },
+      { message: 'Event created successfully', event: createdEvent },
       { status: 201 }
     );
   } catch (error) {
@@ -70,4 +74,4 @@ export async function GET() {
       { status: 500 }
     );
   }
-};
+}

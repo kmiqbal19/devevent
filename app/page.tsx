@@ -1,11 +1,14 @@
 import EventCard from '@/components/EventCard';
 import ExploreBtn from '@/components/ExploreBtn';
 import { IEvent } from '@/database';
+
 export default async function Home() {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-  const events : IEvent[]  = await fetch(`${BASE_URL}/api/events`, { cache: 'no-store', next: {
-    revalidate: 60
-  } })
+  const events: IEvent[] = await fetch(`${BASE_URL}/api/events`, {
+    next: {
+      revalidate: 60,
+    },
+  })
     .then((res) => res.json())
     .then((data) => data.events);
   return (
@@ -21,9 +24,9 @@ export default async function Home() {
       <div className="mt-20 space-y-7">
         <h3> Featured Events</h3>
         <ul className="events">
-          {events.map((event : IEvent, idx) => (
+          {events.map((event: IEvent, idx) => (
             <li key={idx} className="list-none">
-              <EventCard  {...event} />
+              <EventCard {...event} />
             </li>
           ))}
         </ul>

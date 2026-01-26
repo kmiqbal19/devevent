@@ -41,7 +41,8 @@ export async function GET(
       return NextResponse.json(
         {
           message: 'Invalid slug format',
-          error: 'Slug can only contain lowercase letters, numbers, and hyphens',
+          error:
+            'Slug can only contain lowercase letters, numbers, and hyphens',
         },
         { status: 400 }
       );
@@ -88,7 +89,8 @@ export async function GET(
     return NextResponse.json(
       {
         message: 'Failed to fetch event',
-        error: error instanceof Error ? error.message : 'Unknown error occurred',
+        error:
+          error instanceof Error ? error.message : 'Unknown error occurred',
       },
       { status: 500 }
     );
