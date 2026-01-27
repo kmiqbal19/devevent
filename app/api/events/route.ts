@@ -30,16 +30,26 @@ export async function POST(request: NextRequest) {
       secure_url: string;
       public_id: string;
     }
-    const uploadResult = await new Promise<CloudinaryUploadResult>((resolve, reject) => {
-      cloudinary.uploader.upload_stream({
-        resource_type: 'image',
-        folder: 'Devevents/events',
-      }, (error, result) => {
-        if (error) return reject(error);
-        if (!result?.secure_url) return reject(new Error('Upload failed: no secure_url returned'));
-        resolve(result);
-      }).end(buffer);
-    });
+    const uploadResult = await new Promise<CloudinaryUploadResult>(
+      (resolve, reject) => {
+        cloudinary.uploader
+          .upload_stream(
+            {
+              resource_type: 'image',
+              folder: 'Devevents/events',
+            },
+            (error, result) => {
+              if (error) return reject(error);
+              if (!result?.secure_url)
+                return reject(
+                  new Error('Upload failed: no secure_url returned')
+                );
+              resolve(result);
+            }
+          )
+          .end(buffer);
+      }
+    );
     event.image = uploadResult.secure_url;
     const createdEvent = await Event.create(event);
     return NextResponse.json(

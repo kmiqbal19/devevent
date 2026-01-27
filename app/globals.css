@@ -3,7 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-:root {
+/* :root {
   --color-blue: #94eaff;
   --color-light-100: #e7f2ff;
   --color-light-200: #bdbdbd;
@@ -42,6 +42,60 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+} */
+
+:root {
+  --color-blue: rgb(70, 150, 242); /* soft cyan */
+  --color-light-100: #e5e7eb; /* cool light gray */
+  --color-light-200: #9ca3af; /* muted gray */
+  --color-border-dark: #1f2937;
+
+  --color-dark-100: #0b1220; /* deep navy */
+  --color-dark-200: #111827; /* indigo dark */
+
+  --radius: 0.625rem;
+
+  --background: #070b18; /* night blue */
+  --foreground: #f9fafb;
+
+  --card: oklch(0.18 0.02 265);
+  --card-foreground: oklch(0.98 0 0);
+
+  --popover: oklch(0.18 0.02 265);
+  --popover-foreground: oklch(0.98 0 0);
+
+  --primary: #8b5cf6; /* violet */
+  --primary-foreground: #ffffff;
+
+  --secondary: #1e293b;
+  --secondary-foreground: #e5e7eb;
+
+  --muted: #0f172a;
+  --muted-foreground: #94a3b8;
+
+  --accent: #22d3ee; /* cyan accent */
+  --accent-foreground: #020617;
+
+  --destructive: #ef4444;
+
+  --border: #1e293b;
+  --input: #020617;
+  --ring: #38bdf8;
+
+  --chart-1: oklch(0.72 0.17 260);
+  --chart-2: oklch(0.68 0.14 200);
+  --chart-3: oklch(0.58 0.1 230);
+  --chart-4: oklch(0.8 0.15 80);
+  --chart-5: oklch(0.75 0.14 40);
+
+  --sidebar: #020617;
+  --sidebar-foreground: #e5e7eb;
+  --sidebar-primary: #8b5cf6;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #22d3ee;
+  --sidebar-accent-foreground: #020617;
+  --sidebar-border: #1e293b;
+  --sidebar-ring: #38bdf8;
 }
 
 @theme inline {
@@ -94,8 +148,11 @@
   @apply flex items-center justify-center;
 }
 
-@utility text-gradient {
+/* @utility text-gradient {
   @apply to-blue bg-linear-to-b from-white via-white bg-clip-text font-semibold text-transparent;
+} */
+@utility text-gradient {
+  @apply bg-linear-to-r from-cyan-400 via-violet-500 to-fuchsia-500 bg-clip-text text-transparent font-semibold;
 }
 
 @utility glass {
@@ -173,7 +230,10 @@
 
   #event-card {
     @apply flex flex-col gap-3;
-
+    @apply transition-transform duration-100 ease-in-out transform-gpu origin-center;
+    &:hover {
+      @apply scale-[1.03] z-10;
+    }
     .poster {
       @apply h-75 w-full rounded-lg object-cover;
     }

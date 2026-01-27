@@ -46,7 +46,7 @@ export default function BlobCursor({
   slowDuration = 0.5,
   fastEase = 'power3.out',
   slowEase = 'power1.out',
-  zIndex = 100
+  zIndex = 100,
 }: BlobCursorProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const blobsRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -58,7 +58,9 @@ export default function BlobCursor({
   }, []);
 
   const handleMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
+    (
+      e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>
+    ) => {
       const { left, top } = updateOffset();
       const x = 'clientX' in e ? e.clientX : e.touches[0].clientX;
       const y = 'clientY' in e ? e.clientY : e.touches[0].clientY;
@@ -70,7 +72,7 @@ export default function BlobCursor({
           x: x - left,
           y: y - top,
           duration: isLead ? fastDuration : slowDuration,
-          ease: isLead ? fastEase : slowEase
+          ease: isLead ? fastEase : slowEase,
         });
       });
     },
@@ -94,7 +96,11 @@ export default function BlobCursor({
       {useFilter && (
         <svg className="absolute w-0 h-0">
           <filter id={filterId}>
-            <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation={filterStdDeviation} />
+            <feGaussianBlur
+              in="SourceGraphic"
+              result="blur"
+              stdDeviation={filterStdDeviation}
+            />
             <feColorMatrix in="blur" values={filterColorMatrixValues} />
           </filter>
         </svg>
@@ -107,7 +113,7 @@ export default function BlobCursor({
         {Array.from({ length: trailCount }).map((_, i) => (
           <div
             key={i}
-            ref={el => {
+            ref={(el) => {
               blobsRef.current[i] = el;
             }}
             className="absolute will-change-transform transform -translate-x-1/2 -translate-y-1/2"
@@ -117,7 +123,7 @@ export default function BlobCursor({
               borderRadius: blobType === 'circle' ? '50%' : '0',
               backgroundColor: fillColor,
               opacity: opacities[i],
-              boxShadow: `${shadowOffsetX}px ${shadowOffsetY}px ${shadowBlur}px 0 ${shadowColor}`
+              boxShadow: `${shadowOffsetX}px ${shadowOffsetY}px ${shadowBlur}px 0 ${shadowColor}`,
             }}
           >
             <div
@@ -128,7 +134,7 @@ export default function BlobCursor({
                 top: (sizes[i] - innerSizes[i]) / 2,
                 left: (sizes[i] - innerSizes[i]) / 2,
                 backgroundColor: innerColor,
-                borderRadius: blobType === 'circle' ? '50%' : '0'
+                borderRadius: blobType === 'circle' ? '50%' : '0',
               }}
             />
           </div>

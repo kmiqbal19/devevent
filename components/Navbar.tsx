@@ -5,14 +5,18 @@ const Navbar = () => {
     <header>
       <nav>
         <Link href="/" className="logo">
-          <Image src="/icons/logo.png" alt="logo" width={60} height={30} style={
-            {
-              filter: 'invert(100%)'
-            }
-          } />
+          <Image
+            src="/icons/logo.png"
+            alt="logo"
+            width={60}
+            height={30}
+            style={{
+              filter: 'invert(100%)',
+            }}
+          />
           <p>MeetHere</p>
         </Link>
-        <ul className='list-none'>
+        <ul className="list-none">
           <li>
             <Link href="/">Home</Link>
           </li>
@@ -22,7 +26,6 @@ const Navbar = () => {
           <li>
             <Link href="/join">Join Us</Link>
           </li>
-          
         </ul>
       </nav>
     </header>

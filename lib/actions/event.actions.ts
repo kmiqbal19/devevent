@@ -25,8 +25,8 @@ export const getAllEvents = async () => {
     await connectDB();
     const events = await Event.find({}).lean();
     return events;
-  }catch (error ){
+  } catch (error) {
     console.error('Error fetching all events:', error);
     return [];
   }
-}
+};
