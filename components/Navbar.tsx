@@ -20,8 +20,9 @@ const Navbar = () => {
             <Link href="/events">Events</Link>
           </li>
           <li>
-            <Link href="/create-event">Create Event</Link>
+            <Link href="/join">Join Us</Link>
           </li>
+          
         </ul>
       </nav>
     </header>

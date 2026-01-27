@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import { Schibsted_Grotesk, Martian_Mono } from 'next/font/google';
 import './globals.css';
-import LightRays from '@/components/LightRays';
+import LiquidEther from '@/components/LiquidEther';
 import Navbar from '@/components/Navbar';
 import { PostHogProvider } from './providers';
+
 
 const schibstedGrotesk = Schibsted_Grotesk({
   variable: '--font-schibsted-grotesk',
@@ -32,23 +33,27 @@ export default function RootLayout({
       >
         <PostHogProvider>
           <Navbar />
-          <div className="absolute inset-0 top-0 z-[-1] min-h-screen">
-            <LightRays
-              raysOrigin="top-center-offset"
-              raysColor="#5dfeca"
-              raysSpeed={1}
-              lightSpread={0.9}
-              rayLength={3}
-              followMouse={true}
-              mouseInfluence={0.1}
-              noiseAmount={0}
-              distortion={0}
-              className="custom-rays"
-              pulsating={false}
-              fadeDistance={1}
-              saturation={1}
-            />
-          </div>
+
+<div className='absolute inset-0 top-0 z-[-1] min-h-screen'>
+  <LiquidEther
+    colors={[ '#5227FF', '#FF9FFC', '#B19EEF' ]}
+    mouseForce={20}
+    cursorSize={100}
+    isViscous
+    viscous={30}
+    iterationsViscous={32}
+    iterationsPoisson={32}
+    resolution={0.5}
+    isBounce={false}
+    autoDemo
+    autoSpeed={0.5}
+    autoIntensity={2.2}
+    takeoverDuration={0.25}
+    autoResumeDelay={3000}
+    autoRampDuration={0.6}
+/>
+</div>
+
           <main>{children}</main>
         </PostHogProvider>
       </body>
