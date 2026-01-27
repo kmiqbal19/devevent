@@ -1,17 +1,10 @@
 import EventCard from '@/components/EventCard';
 import ExploreBtn from '@/components/ExploreBtn';
 import { IEvent } from '@/database';
+import { getAllEvents } from '@/lib/actions/event.actions';
 
 export default async function Home() {
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : 'http://localhost:3000';
-
-  const events: IEvent[] = await fetch(`${baseUrl}/api/events`, {
-    cache: 'no-store',
-  })
-    .then((res) => res.json())
-    .then((data) => data.events);
+  const events = await getAllEvents();
   return (
     <section>
       <h1 className="text-center">
