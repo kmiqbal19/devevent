@@ -8,7 +8,7 @@ const JoinPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 const [isSuccess, setIsSuccess] = useState(false);
 const baseUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ||
+  process.env.VERCEL_URL ||
   'http://localhost:3000';
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

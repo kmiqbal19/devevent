@@ -4,7 +4,7 @@ import { IEvent } from '@/database';
 
 export default async function Home() {
  const baseUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ||
+  process.env.VERCEL_URL ||
   'http://localhost:3000';
 
 const events: IEvent[] = await fetch(`${baseUrl}/api/events`, {

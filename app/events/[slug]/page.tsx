@@ -49,7 +49,7 @@ const EventDetailsPage = async ({
 }) => {
   const { slug } = await params;
   const baseUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ||
+  process.env.VERCEL_URL ||
   'http://localhost:3000';
   const response = await fetch(`${baseUrl}/api/events/${slug}`, {
 cache: 'no-store',
