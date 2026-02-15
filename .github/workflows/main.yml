@@ -1,0 +1,34 @@
+name: Build MeetHere
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4  
+
+      - name: Setup Node JS Environment
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Next.js App
+        run: npm run build
+
+      - name: Debug folders
+        run: ls -la
+
+      - name: Upload Build to Artifacts
+        uses: actions/upload-artifact@v6
+        with:
+          name: nextjs-build-meet-here
+          path: .next/**
